@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 id="monitor">Flood and Drought Monitoring</h1>
+    
+    <div class="monitor-container">
+        <form method="POST" class="monitor-form">
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" step="any" name="rainfall" required>
+            
+            <label for="dam_level">Dam Level (%):</label>
+            <input type="number" step="any" name="dam_level" required>
+            
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" step="any" name="temperature" required>
+            
+            <button type="submit">Check Status</button>
+        </form>
+
+        {% if result %}
+        <p class="{% if 'warning' in result.lower() %}warning{% else %}normal{% endif %}">
+            {{ result }}
+        </p>
+        {% endif %}
+    </div>
+
+    <video autoplay muted loop id="video-bg">
+        <source src="https://videos.pexels.com/video-files/2935032/2935032-hd_1280_720_30fps.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+{% endblock %}
